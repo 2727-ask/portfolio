@@ -55,6 +55,12 @@
     </nav>
 
     <main>
+
+        <video id="backgroundVideo" class="video-background" autoplay muted loop>
+            <source src="./images/globe.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium numquam, adipisci quos maxime nam
         sit beatae consequatur cum doloremque?
         Nobis voluptatum, eligendi, quam ipsum ab, quia placeat consequuntur nesciunt aliquid provident labore!
@@ -155,7 +161,38 @@
         blanditiis vitae modi suscipit repellat?
         Explicabo cum porro impedit ullam dicta rerum dolorem laboriosam. Architecto voluptatem nesciunt natus
         similique. Molestiae maiores fuga doloremque illo! Laboriosam?
+        </div>
     </main>
 </body>
+
+<script>
+    const video = document.getElementById('backgroundVideo');
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let isReversing = false;
+    let isPlaying = false;
+
+    window.addEventListener('scroll', function () {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDirection = scrollTop > lastScrollTop ? 'down' : 'up';
+        const frameRate = 0.03; // Adjusts the speed of video change based on scroll
+
+        if (!isPlaying) {
+            isPlaying = true;
+            video.pause();  // Ensure video is paused initially
+        }
+
+        if (scrollDirection === 'down') {
+            // Play forward by advancing video currentTime
+            isReversing = false;
+            video.currentTime = Math.min(video.duration, video.currentTime + frameRate);
+        } else {
+            // Simulate reverse by reducing video currentTime
+            isReversing = true;
+            video.currentTime = Math.max(0, video.currentTime - frameRate);
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scrolling
+    });
+</script>
 
 </html>

@@ -68,7 +68,8 @@ main {
 }
 
 .navbar-mobile {
-    display:none
+    display:none;
+    z-index: 1 !important;
 }
 
 .link-text {
@@ -133,7 +134,7 @@ main {
         justify-content: center;
         align-items: center;
         height: 60px; /* Adjust height as needed */
-        background-color: var(--bg-primary); /* Navbar background color */
+        background-color: var(--bg-primary); /* Navbar background color */;
     }
 
     
@@ -168,3 +169,20 @@ main {
 
 
 }
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    min-height: 200vh; /* Add enough height to allow scrolling */
+   
+}
+
